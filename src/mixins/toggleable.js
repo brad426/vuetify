@@ -6,16 +6,17 @@ export default {
   },
 
   props: {
-    value: Boolean
+    value: {
+      required: false
+    }
   },
 
   watch: {
-    value () {
-      this.isActive = this.value
+    value (val) {
+      this.isActive = Boolean(val)
     },
-
-    isActive () {
-      this.$emit('input', this.isActive)
+    isActive (val) {
+      val !== this.value && this.$emit('input', val)
     }
   }
 }
